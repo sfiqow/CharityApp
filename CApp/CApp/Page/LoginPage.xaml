@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+    <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CApp.Page.LoginPage"
+             xmlns:Page="clr-namespace:CApp.Page"
+             xmlns:Models="clr-namespace:CApp.Models"
+             xmlns:ViewModel="clr-namespace:CApp.ViewModel"
+             xmlns:Services="clr-namespace:CApp.Services"
+             xmlns:Interface="clr-namespace:CApp.Interface"
+             Shell.NavBarIsVisible="false"
+             x:DataType="ViewModel:LoginViewModel"
+             BackgroundColor="{AppThemeBinding Light=#E1E1E1, Dark=#fff}">
+
+    <!--Use of Vertical stack layout-->
+
+    <VerticalStackLayout Padding ="15"
+                         Spacing="9">
+
+        <Label 
+            Text="Charity"
+            Style="{StaticResource Headline}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"/>
+
+        <Image Source="welcome.png"
+               WidthRequest="310"
+               HeightRequest="310"/>
+
+        <Label 
+            Text="Please log in"
+            Style="{StaticResource SubHeadline}"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"/>
+
+        <Entry 
+            ReturnType="Next"
+            Placeholder="Email"
+            Text="{Binding Namer}"
+            Keyboard="Email"
+            IsEnabled="True" 
+            IsTextPredictionEnabled="True"/>
+
+        <Entry 
+            Text="{Binding Encryption}"
+            IsPassword="True"
+            IsEnabled="True"
+            ReturnType="Go"
+            Placeholder="Password"/>
+
+        <Button
+            Command="{Binding LogginInCommand}"
+            Margin="20,40,20,0"
+            Text="Log in please" 
+            IsEnabled="True"
+            />
+
+        <Label HorizontalOptions="Center" VerticalOptions="Center" >
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="Sign Up now" TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" >
+                        <Span.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SignupNowCommand}"/>
+                        </Span.GestureRecognizers>
+                    </Span>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
+    </VerticalStackLayout>
+</ContentPage>

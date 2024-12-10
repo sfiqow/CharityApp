@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CApp.Page.CheckOutPage"
+             Title="CheckOut">
+
+    <!--Use of Vertical stack layout-->
+    
+    <VerticalStackLayout VerticalOptions="Center"
+                         HorizontalOptions="Center"
+                         Spacing="30">
+        <Image x:Name="IMG"
+               Source="tick.png"
+               HeightRequest="150"
+               WidthRequest="150"
+               Scale="0"/>
+        <Label x:Name="MSG"
+            Text="Donation(s) succesful"
+               FontSize="30"
+               HorizontalOptions="Center"
+               VerticalOptions="End"
+               TextColor="Green"
+               Scale="0"/>
+        
+        
+        <Button x:Name="MBTN"
+            Text="Main screen"
+                BackgroundColor="BlueViolet"
+                CornerRadius="22"
+                HorizontalOptions="Center"
+                Padding="50,10"
+                Scale="0"
+                Opacity="0"
+                Clicked="MBTN_Clicked"/>
+
+
+
+    </VerticalStackLayout>
+</ContentPage>

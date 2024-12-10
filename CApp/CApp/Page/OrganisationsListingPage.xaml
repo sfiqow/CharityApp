@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="CApp.Page.OrganisationsListingPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Models="clr-namespace:CApp.Models"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:ViewModel="clr-namespace:CApp.ViewModel"
+    x:DataType="ViewModel:OrganisationsListingViewModel">
+
+    <!--Use of Grid layout and CollectionView-->
+
+    
+    
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior Command="{Binding GetOrganisationsCommand}" EventName="Appearing" />
+    </ContentPage.Behaviors>
+
+    <Grid
+        Margin="25"
+        RowDefinitions="Auto,*"
+        RowSpacing="8">
+        
+        <Grid Grid.Row="0" ColumnDefinitions="*,*">
+            <Label
+                Grid.Column="0"
+                FontAttributes="Bold"
+                FontSize="Title"
+                Text="Your charity" />
+            <Button
+                Grid.Column="1"
+                Background="Red"
+                Command="{Binding AddOrganisationCommand}"
+                HorizontalOptions="End"
+                Text="Add"
+                FontAttributes="Bold"
+                TextColor="Black" 
+                CornerRadius="18"
+                WidthRequest="98"/>
+            
+        </Grid>
+
+        <CollectionView Grid.Row="1" ItemsSource="{Binding Organisations}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="4" Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="Models:Organisation">
+                    
+                    <Border
+                        Padding="15"
+                        Stroke="LightGoldenrodYellow"
+                        Background="PowderBlue"
+                        StrokeThickness="2"
+                        HeightRequest="178">
+                        
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="20,20,20,20" 
+                                            Margin="5"/>
+                            
+                        </Border.StrokeShape>
+                        <Grid RowDefinitions="Auto,*" RowSpacing="5">
+                            <Grid Grid.Row="1" RowDefinitions="Auto,Auto,Auto" RowSpacing="5">
+                                
+                                <Label
+                                    Grid.Row="0"
+                                    FontAttributes="Bold"
+                                    FontSize="Medium"
+                                    Text="{Binding Title}" />
+                                
+                                <Label
+                                    Grid.Row="1"
+                                    Margin="0,2"
+                                    FontSize="Small"
+                                    Text="{Binding Needed}" />
+                                
+                                <Label
+                                    Grid.Row="2"
+                                    Margin="0,2"
+                                    FontSize="Small"
+                                    Text="{Binding Detail}" />
+                                
+                                
+                                <Grid
+                                    Grid.Row="3"
+                                    Margin="10,34"
+                                    ColumnDefinitions="*,*,*"
+                                    RowDefinitions="*,*,*,*">
+                                    
+                                    
+                                    <Button
+                                        Grid.Column="1"
+                                        Grid.Row="3"
+                                        BackgroundColor="#4A88DA"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ViewModel:OrganisationsListingViewModel}}, Path=UpdateOrganisationCommand}"
+                                        CommandParameter="{Binding .}"
+                                        Text="Update"
+                                        FontAttributes="Bold"
+                                        TextColor="AliceBlue"
+                                        CornerRadius="30"
+                                        Padding="5"
+                                        WidthRequest="90"
+                                        VerticalOptions="End"
+                                        HorizontalOptions="Center"/>
+                                    
+                                    
+                                    <Button
+                                        Grid.Column="2"
+                                        Grid.Row="3"
+                                        BackgroundColor="Orange"
+                                        VerticalOptions="Start"
+                                        HorizontalOptions="End"
+                                        Padding="5"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ViewModel:OrganisationsListingViewModel}}, Path=DeleteOrganisationCommand}"
+                                        CommandParameter="{Binding .}"
+                                        Text="Delete"
+                                        FontAttributes="Bold"
+                                        WidthRequest="90"
+                                        TextColor="White"
+                                        CornerRadius="30"/>
+                                    
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

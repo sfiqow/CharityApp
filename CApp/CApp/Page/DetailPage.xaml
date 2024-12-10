@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CApp.Page.DetailPage"
+             xmlns:Page="clr-namespace:CApp.Page"
+             xmlns:Models="clr-namespace:CApp.Models"
+             xmlns:ViewModel="clr-namespace:CApp.ViewModel"
+             xmlns:Services="clr-namespace:CApp.Services"
+             x:DataType="ViewModel:DetailViewModel"            
+             BackgroundColor="{AppThemeBinding Light=#E1E1E1, Dark=#fff}">
+
+    <!--Use of Vertical stack layout, Grid layout, CollectionView and scrollview-->
+
+    <!--Density pixel, as much space, fill
+    75% fill to 25%-->
+    
+
+    <Grid RowDefinitions="Auto, *">
+        <SearchBar Grid.Row="0"
+                   x:Name="SearchBar"
+                   Placeholder="Search for charities"
+                   SearchCommand="{Binding SearchCharitiessCommand}"
+                   SearchCommandParameter="{Binding Source={Reference SearchBar}, Path=Text}"
+                   TextChanged="SearchBar_TextChanged"/>
+        
+        <ScrollView Grid.Row="1"
+                    Margin="5">
+        <VerticalStackLayout >
+            <VerticalStackLayout>
+                <CollectionView ItemsSource="{Binding Charitiess}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="Models:Charitiee">
+                            <Border StrokeShape="RoundRectangle 15"
+                                    StrokeThickness="2"
+                                    BackgroundColor="Aquamarine"
+                                    Padding="10"
+                                    Margin="2">
+                                <Grid RowDefinitions="100, Auto, Auto, Auto"
+                                      RowSpacing="10">
+                                    <Image Grid.Row="0"
+                                           Source="{Binding Pic}"
+                                           BackgroundColor="Transparent"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center"/>
+                                    <Label Grid.Row="1"
+                                           Text="{Binding Namee}"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Start"
+                                           FontSize="30"/>
+                                    <Label Grid.Row="2"
+                                           Text="{Binding Info}"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center"/>
+                                    <Button Grid.Row="3"
+                                            Text="View more"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type ViewModel:DetailViewModel}}, Path=Charity1Command}"
+                                            CommandParameter="{Binding .}"
+                                            CornerRadius="20"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="End"
+                                            Padding="10,0"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+    </Grid>
+
+</ContentPage>
+
+
+

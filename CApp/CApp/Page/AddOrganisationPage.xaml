@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="CApp.Page.AddOrganisationPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ViewModel="clr-namespace:CApp.ViewModel"
+    Title="Add Organisations"
+    x:DataType="ViewModel:AddOrganisationViewModel">
+    
+    
+    <VerticalStackLayout Margin="25">
+        <Entry Placeholder="Title" Text="{Binding OrganisationTitle}" />
+        <Entry Placeholder="Amount" Text="{Binding OrganisationNeeded}" /> 
+        <Entry Placeholder="Detail" Text="{Binding OrganisationDetail}" />
+
+        <Button
+            Background="Aquamarine"
+            Command="{Binding AddOrganisationCommand}"
+            Text="Add Charity"
+            TextColor="Black" />
+        
+    </VerticalStackLayout>
+    
+</ContentPage>

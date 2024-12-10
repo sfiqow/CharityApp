@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CApp.Page.BasketPage"
+             xmlns:Page="clr-namespace:CApp.Page"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:Models="clr-namespace:CApp.Models"             
+             xmlns:ViewModel="clr-namespace:CApp.ViewModel"
+             xmlns:Services="clr-namespace:CApp.Services"
+             x:DataType="ViewModel:BasketViewModel"
+             Title="BasketPage"
+             BackgroundColor="PaleGoldenrod">
+    
+    <!--Use of Vertical stack layout, Grid layout, CollectionView and scrollview-->
+
+    <ContentPage.ToolbarItems>
+        
+        <ToolbarItem Text="Clear basket"
+                     Command="{Binding ClearBasketCommand}"/>
+        
+    </ContentPage.ToolbarItems>
+
+    <Grid>
+        <ScrollView>
+            <VerticalStackLayout Padding="10">
+                <CollectionView ItemsSource="{Binding Contributions}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+                    </CollectionView.ItemsLayout>
+                   
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="Models:Charitiee">
+                            <Border StrokeShape="RoundRectangle 30"
+                            StrokeThickness="0"
+                            BackgroundColor="Red"
+                            Padding="10">
+                                <Grid ColumnDefinitions="25, Auto, 50, *, Auto, Auto">
+                                    <Label Grid.Column="0"
+                                   Text="{Binding DonationN}"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+                                    <Label Grid.Column="1"
+                                   Text="x"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"
+                                           FontSize="18"/>
+                                    <Image Grid.Column="2"
+                                   Source="{Binding Pic}"
+                                   HeightRequest="35"
+                                   WidthRequest="35"    
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"/>
+                                    <VerticalStackLayout Grid.Column="3"
+                                                 VerticalOptions="Center"
+                                                 HorizontalOptions="Start"
+                                                 Spacing="2">
+                                        <Label Text="{Binding Namee}"/>
+                                    </VerticalStackLayout>
+                                    <Label Grid.Column="4"
+                                   Text="{Binding DonationAmount, StringFormat='£{0:N2}'}"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+                                    <Image Grid.Column="5"
+                                   Source="bin.png"
+                                   HeightRequest="50"
+                                   WidthRequest="50"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="End">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ViewModel:BasketViewModel}}, Path=RemoveBasketContributionCommand}"
+                                                                  CommandParameter="{Binding Namee}"/>
+
+
+                                        </Image.GestureRecognizers>
+                                    </Image>
+
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    
+
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <Border StrokeShape="RoundRectangle 50"
+                BackgroundColor="BlueViolet"
+                StrokeThickness="0"
+                VerticalOptions="End"
+                Margin="5"
+                Padding="20">
+            <Grid ColumnDefinitions="*,*">
+                <Label Grid.Column="0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Total: "
+                                  FontSize="20"/>
+                            <Span Text="{Binding TotalAmount, StringFormat='£{0:N2}'}"
+                                  FontSize="25"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Button Grid.Column="2"
+                        Text="Donate"
+                        BackgroundColor="DarkGoldenrod"
+                        CornerRadius="30"
+                        HorizontalOptions="Center"
+                        VerticalOptions="End"
+                        Padding="25,10"
+                        Command="{Binding PayCommand}"/>
+
+
+            </Grid>
+
+        </Border>
+                
+    </Grid>
+
+
+</ContentPage>
+
+    
+    
+<!--//<Label Text="{Binding Price, StringFormat='£{0:N2}'}"/>-->

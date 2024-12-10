@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="CApp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Page="clr-namespace:CApp.Page"
+    Shell.TabBarIsVisible="False"
+    Shell.FlyoutBehavior="Flyout"
+    Title="CApp">
+
+    <!--Use of Flyout bar-->
+
+    <FlyoutItem Title="Home" FlyoutDisplayOptions="AsMultipleItems">
+
+
+        <ShellContent
+        Title="Login"
+        ContentTemplate="{DataTemplate Page:LoginPage}"
+        Route="LoginPage" 
+        Shell.FlyoutBehavior="Disabled"
+        Shell.FlyoutItemIsVisible="False"/>
+
+        <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate Page:MainPage}"
+        Route="MainPage" />
+
+        <ShellContent
+        Title="Loadin"
+        ContentTemplate="{DataTemplate Page:LoadingPage}"
+        Route="LoadingPage" 
+        Shell.FlyoutBehavior="Disabled"
+        Shell.FlyoutItemIsVisible="False"/>
+
+
+        <ShellContent
+        Title="Detail"
+        ContentTemplate="{DataTemplate Page:DetailPage}"
+        Route="DetailPage" />
+
+        <ShellContent
+         Title="Organisation"
+        ContentTemplate="{DataTemplate Page:OrganisationsListingPage}"
+        Route="OrganisationsListingPage" />
+
+        <ShellContent
+         Title="Profile"
+        ContentTemplate="{DataTemplate Page:ProfilePage}"
+        Route="ProfilePage" />
+
+
+
+
+    </FlyoutItem>
+
+</Shell>
+

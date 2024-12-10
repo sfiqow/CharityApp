@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CApp.Page.Charity1Page"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:Page="clr-namespace:CApp.Page"
+             xmlns:Models="clr-namespace:CApp.Models"             
+             xmlns:ViewModel="clr-namespace:CApp.ViewModel"
+             x:DataType="ViewModel:Charity1ViewModel"
+             Title="Charity1Page">
+
+    <!--Use of Vertical stack layout, Grid layout and scrollview-->
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="DonateBtn" TargetType="ImageButton">
+                <Setter Property="HeightRequest" Value="40"/>
+                <Setter Property="WidthRequest" Value="40"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="Padding" Value="40"/>
+
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+    <Grid>
+        <ScrollView>
+            <VerticalStackLayout Spacing="15"
+                                     Padding="15">
+
+                <Image Source="{Binding Charitiee.Pic}"
+                   HeightRequest="200"
+                   WidthRequest="200"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"/>
+
+                <Label Text="{Binding Charitiee.Namee}"
+                   FontSize="70"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"/>
+
+                <Label Text="{Binding Charitiee.Info}"
+                   FontSize="15"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"/>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+            <Border
+            StrokeThickness="0"
+            BackgroundColor="Beige"
+            Margin="-1"
+            VerticalOptions="End"
+            HeightRequest="150"
+            Padding="10"
+            StrokeShape="RoundRectangle 30, 30, 0, 0">
+                <Border.Shadow>
+                    <Shadow Brush="Black"
+                    Radius="100"/>
+                </Border.Shadow>
+                
+                <Grid RowDefinitions="Auto,Auto"
+                     ColumnDefinitions="*,*">
+                    <Label Grid.Row="0"
+                   Grid.Column="0"
+                   Text="{Binding Charitiee.DonationAmount, StringFormat='£{0:N2}'}"
+                   FontSize="20"
+                   TextColor="Black"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Center"/>
+
+
+                <Grid Grid.Row="0" 
+                    Grid.Column="1"
+                      ColumnDefinitions="50,30,50"
+                      HorizontalOptions="End"
+                      VerticalOptions="Center">
+                    <ImageButton 
+                             Source="pluss.png"
+                             Style="{StaticResource DonateBtn}"
+                             HeightRequest="20"
+                             WidthRequest="20"
+                            BackgroundColor="Transparent"
+                             VerticalOptions="Center"
+                             Padding="0"
+                             Command="{Binding IncreaseCommand}"/>
+
+                    <Label Grid.Column="1"
+                       Text="{Binding Charitiee.DonationN}"
+                       TextColor="Black"
+                       FontSize="20"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"/>
+
+                    <ImageButton Grid.Column="2"
+                             Source="minus.png"
+                             Style="{StaticResource DonateBtn}"
+                             HeightRequest="20"
+                             WidthRequest="20"
+                             BackgroundColor="Transparent"
+                             VerticalOptions="Center"
+                             Padding="0"
+                             Command="{Binding DecreaseCommand}"/>
+
+
+                </Grid>
+                <Button Grid.Row="1"
+                        Grid.ColumnSpan="2"
+                        Text="View cart"
+                        TextColor="Black"
+                        BackgroundColor="Blue"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        CornerRadius="30"
+                            HeightRequest="50"
+                            WidthRequest="200"
+                        Margin="0,20"
+                        Command="{Binding ViewBasketCommand}"/>
+                    
+                </Grid>
+            </Border>
+    </Grid>
+</ContentPage>
+
+<!--Shell.NavBarIsVisible="False"-->
+

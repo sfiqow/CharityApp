@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CApp.Page.MainPage"
+             xmlns:ViewModel="clr-namespace:CApp.ViewModel"
+             x:DataType="ViewModel:MainViewModel"
+             BackgroundColor="{AppThemeBinding Light=#E1E1E1, Dark=#fff}">
+
+    <!--Use of Vertical stack layout, Grid layout-->
+
+
+    <Grid>
+
+        <!-- Define rows in the Grid -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Row 0: Height adjusts to content -->
+            <RowDefinition Height="Auto"/>
+            <!-- Row 1: Height adjusts to content -->
+            <RowDefinition Height="Auto"/>
+            <!-- Row 2: Height adjusts to content -->
+            <RowDefinition Height="*"/>
+            <!-- Row 3: Takes up remaining space -->
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Define columns in the Grid -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <!-- Column 0: Takes equal width -->
+            <ColumnDefinition Width="*"/>
+            <!-- Column 1: Takes equal width -->
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Image Grid.Row="0"
+               Grid.Column="1"
+                   Source="charity1.png"
+                   HeightRequest="250"
+                   WidthRequest="250"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"/>
+
+        <Label Grid.Row="0"
+               Grid.Column="0"
+               Grid.ColumnSpan="3"
+                   Text="Universal giving"
+                   FontSize="50"
+                   HorizontalOptions="Center"
+                   FontAttributes="Bold"/>
+
+        <Image Grid.Row="1"
+               Grid.Column="2"
+               Source="charity.png"
+               HeightRequest="250"
+               WidthRequest="250"/>
+
+        <Border
+            Grid.Row="1" 
+            Grid.Column="0" 
+            Grid.ColumnSpan="2" 
+            Grid.RowSpan="3"
+            StrokeThickness="0"
+            BackgroundColor="Beige"
+            Margin="-20"
+            VerticalOptions="End"
+            HeightRequest="400"
+            Padding="20"
+            StrokeShape="RoundRectangle 40, 40, 40, 40">
+            <Border.Shadow>
+                <Shadow Brush="Black"
+                    Radius="100"/>
+            </Border.Shadow>
+            
+            <VerticalStackLayout Padding="20" 
+                                 Spacing="10">
+
+                <Label Text="Donate today and help save millions of lives"
+                       FontSize="20"
+                       TextColor="Black"/>
+
+                <Label Text="In a world filled with diverse needs, your donation has the power to bring positive change in countless ways.
+                       Whether it’s providing shelter to the homeless, offering hope to cancer patients, supporting refugees in crisis, or protecting 
+                       our environment, every contribution counts."
+                       FontSize="15"
+                       TextColor="Gray"/>
+
+                <Button Text="Donate"
+                        Command="{Binding Tap1Command}"
+                        WidthRequest="150"
+                        HeightRequest="50"
+                        FontSize="20"
+                        Padding="10"
+                        Margin="10"
+                        BackgroundColor="#FF6347"
+                        TextColor="White"
+                        CornerRadius="30"
+                        HorizontalOptions="Center"
+                        VerticalOptions="End"/>
+            
+            </VerticalStackLayout>
+        </Border>
+
+    </Grid>
+</ContentPage>

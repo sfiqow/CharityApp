@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="CApp.Page.UpdateOrganisationPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ViewModels="clr-namespace:CApp.ViewModel"
+    Title="Update charity"
+    x:DataType="ViewModels:UpdateOrganisationViewModel">
+
+    <!--Use of Vertical stack layout-->
+    
+    <VerticalStackLayout Margin="20">
+        <Entry Placeholder="Title" Text="{Binding Organisation.Title}" />
+        <Entry Placeholder="Needed" Text="{Binding Organisation.Needed}" />
+        <Entry Placeholder="Detail" Text="{Binding Organisation.Detail}" />
+        
+        <Button
+            Background="Blue"
+            Command="{Binding UpdateOrganisationCommand}"
+            Text="Update Charity"
+            TextColor="AliceBlue" />
+    </VerticalStackLayout>
+</ContentPage>

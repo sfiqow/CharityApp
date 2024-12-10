@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CApp.Page.PaymentPage"
+             Title="Payment ">
+
+    <!--Use of Vertical stack layout and Grid layout-->
+    <VerticalStackLayout>
+
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+              RowSpacing="40">
+
+            <Image Grid.Row="0"
+                Source="payment.png"
+               WidthRequest="310"
+               HeightRequest="100"/>
+
+
+            <Entry Grid.Row="1"
+            ReturnType="Next"
+            Placeholder="Name on card"
+            IsTextPredictionEnabled="True"/>
+
+            <Entry Grid.Row="2"
+            ReturnType="Next"
+            Placeholder="Card Number"/>
+
+            <Grid Grid.Row="3"
+                ColumnDefinitions= " *,* ">
+                <Entry Grid.Column="0"
+            ReturnType="Next"
+            Placeholder="Expiry date"/>
+
+                <Entry Grid.Column="1"
+            ReturnType="Next"
+            Placeholder="Security code"/>
+            </Grid>
+
+
+            <Button Grid.Row="4"
+                    Text="Pay"
+                        Command="{Binding PayedCommand}"/>
+
+
+        </Grid>        
+
+    </VerticalStackLayout>
+</ContentPage>
