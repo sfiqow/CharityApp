@@ -1,3 +1,5 @@
+Universal giving
+
 This app uses Supabase as its database for managing users charity information, allowing them to create, read, update, and delete their data and charity information. Additionally, it stores users email address
 and password for authentication purposes. As well as using UI controls such as VerticalStackLayout, HorizontalStackLayout, GridLayout, FlexLayout, ScrollView, CollectionView and Flyout tabs for better 
 user experience. The app also has various software design patterns, including Dependency Injection for managing view models and services, Behavioral design patterns such as the Observer pattern for 
